@@ -1,5 +1,6 @@
 import org.w3c.dom.ls.LSInput;
 
+import javax.xml.transform.Source;
 import java.util.*;
 
 public class Hashing {
@@ -17,10 +18,23 @@ public class Hashing {
                 hashMap.put(c,1);
             }
         }
-
+        Integer max = -1;
+        Character greatest='t';
+        Character least='t';
+        Integer min = -1;
         for(Map.Entry entry : hashMap.entrySet()) {
             System.out.println("Element " + entry.getKey() + " occurs " + entry.getValue());
+            if((Integer)entry.getValue()>max){
+                max=(Integer)entry.getValue();
+                greatest=(Character) entry.getKey();
+            }
+            assert entry.getKey() instanceof Integer;
+            if ((Integer)entry.getKey()<min){
+                min=(Integer)entry.getValue();
+                least=(Character) entry.getKey();
+            }
         }
+        System.out.println("The element with most frequency is "+greatest+" and least frequency is "+least);
 
 
      }
