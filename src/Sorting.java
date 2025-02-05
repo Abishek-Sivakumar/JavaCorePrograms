@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Sorting {
     static void selectionSort(int[] arr){ // The Time Complexity is O(Nsquare);
         //we select the minimum and then swap aith the index
@@ -22,10 +24,11 @@ public class Sorting {
         int n=arr.length;
         int didSwap=0;
         for(int i=n-1;i>=0;i--){
+            //Adjacent Swapping
             //After the first iteration the last element will be the biggest
             //So we traverse from the last -1 position after each i loop
             for(int j=0;j<=i-1;j++){
-                if(arr[j]%4==0){
+                if(arr[j]>arr[j+1]){
                     int temp =  arr[j+1];
                     arr[j+1]=arr[j];
                     arr[j]=temp;
@@ -40,9 +43,24 @@ public class Sorting {
         }
     }
 
+    static void insertionSort(int[] arr){
+        //Worst case is O(Nsquare) and best case is O(N)
+        int n=arr.length;
+        for(int i=0;i<=n-1;i++){
+            int j=i;
+            while(j>0 && arr[j-1]>arr[j]){
+                int temp=arr[j];
+                arr[j]=arr[j-1];
+                arr[j-1]=temp;
+                j--;
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        int[] arr = {4,2,7,1};
-        bubbleSort(arr);
+        int[] arr = {4,2,7,1,3};
+//        int[] result = Arrays.stream(arr).distinct().sorted().toArray();
+        insertionSort(arr);
         for (int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
