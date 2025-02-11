@@ -57,10 +57,66 @@ public class Sorting {
         }
     }
 
+    static void mergeSort(int[] arr,int l,int r){
+        if(l<r){
+            int mid=(l+r)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            merge(arr,l,mid,r);
+        }
+    }
+
+
+    private static void merge(int[] arr, int l, int mid, int r) {
+        //For the array {4,2,7,1,3}
+        int n1= mid - l + 1; // To find the size of the array => 2-0+1 = 3
+        int n2= r-mid; // To find the size of the array => 5-2=3
+
+        int[] larr = new int[n1]; //Creating two new arrays which contain the values of arr in two separate arrays
+        int[] rarr = new int[n2];
+
+
+        for(int i=0;i<n1;i++){
+            larr[i]=arr[l+i]; // Allocating the left side of the arr to the array larr
+        }
+
+        for(int i=0;i<n2;i++){
+            rarr[i]=arr[mid+1+i]; //Allocating the right side of the arr to rarr
+        }
+
+        int i=0;
+        int j=0;
+        int k=l; // Here it is not zero because the staring index of the array is l and not 0
+
+        while(i<n1 && j<n2){ // Loop until we run out of elements in any one of the array
+            if(larr[i]<=rarr[j]){
+                arr[k]=larr[i];
+                i++;
+            }else{
+                arr[k]=rarr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while(i<n1){ //Checking and filling the remaining elements of the larr in arr
+            arr[k]=larr[i];
+            i++;
+            k++;
+        }
+
+        while(j<n2){
+            arr[k]=rarr[j];
+            j++;
+            k++;
+        }
+
+    }
+
     public static void main(String[] args) {
         int[] arr = {4,2,7,1,3};
 //        int[] result = Arrays.stream(arr).distinct().sorted().toArray();
-        insertionSort(arr);
+        mergeSort(arr,0,arr.length-1);
         for (int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
