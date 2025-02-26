@@ -58,8 +58,9 @@ public class Sorting {
     }
 
     static void mergeSort(int[] arr,int l,int r){
+//        mergeSort(arr,0,arr.length-1);
         if(l<r){
-            int mid=(l+r)/2;
+            int mid=(l+r)/2; //For Leetcode int mid = l+(r-l)/2;
             mergeSort(arr,l,mid);
             mergeSort(arr,mid+1,r);
             merge(arr,l,mid,r);
@@ -99,7 +100,7 @@ public class Sorting {
             k++;
         }
 
-        while(i<n1){ //Checking and filling the remaining elements of the larr in arr
+        while(i<n1){ //Checking and filling the remaining elements of the larr in array
             arr[k]=larr[i];
             i++;
             k++;
@@ -152,7 +153,7 @@ public class Sorting {
     public static void main(String[] args) {
         int[] arr = {4,2,5,1,3};
 //        int[] result = Arrays.stream(arr).distinct().sorted().toArray();
-        quickSort(arr,0,arr.length-1);
+        mergeSort(arr,0,arr.length-1);
         for (int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
