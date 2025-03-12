@@ -17,12 +17,28 @@ public class ArrayProblems {
             System.out.print(arr[k]+" ");
         }
         System.out.println("\nThe number of elements in sorted array is "+(i+1));
+    }
 
+    public static int[] findSecondLargest(int[] arr,int n){
+        int largest = arr[0];
+        int slargest = Integer.MIN_VALUE;
+        for(int i=1;i<n;i++){
+            if(arr[i]>largest){
+                slargest=largest;
+                largest=arr[i];
+            }else if(arr[i]<largest && arr[i]>slargest){
+                slargest=arr[i];
+            }
+        }
+        return new int[]{largest,slargest};
     }
 
     public static void main(String[] args) {
         int[] arr = {1,1,1,2,2,3};
-        removeDuplicates(arr,arr.length);
-
+        int[] slargest = findSecondLargest(arr,arr.length);
+//        removeDuplicates(arr,arr.length);
+        for(int i=0;i<slargest.length;i++){
+            System.out.print(slargest[i]+" ");
+        }
     }
 }
