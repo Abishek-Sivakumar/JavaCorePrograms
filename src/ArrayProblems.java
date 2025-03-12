@@ -20,25 +20,37 @@ public class ArrayProblems {
     }
 
     public static int[] findSecondLargest(int[] arr,int n){
+        //For the second smallest see the comments
         int largest = arr[0];
-        int slargest = Integer.MIN_VALUE;
+        int slargest = Integer.MIN_VALUE; // for second smallest just initialize this as Integer.MAX_VALUE
         for(int i=1;i<n;i++){
-            if(arr[i]>largest){
+            if(arr[i]>largest){ //arr[i]<smallest
                 slargest=largest;
                 largest=arr[i];
-            }else if(arr[i]<largest && arr[i]>slargest){
+            }else if(arr[i]<largest && arr[i]>slargest){ //arr[i]>smallest && arr[i]<ssmallest
                 slargest=arr[i];
             }
         }
         return new int[]{largest,slargest};
     }
 
+    public static void leftRotateByOne(int[] arr,int n){
+        int temp=arr[0];
+        for(int i=1;i<n;i++){
+            arr[i-1]=arr[i];
+        }
+        arr[n-1]=temp;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1,1,1,2,2,3};
-        int[] slargest = findSecondLargest(arr,arr.length);
+        leftRotateByOne(arr,arr.length);
+//        int[] slargest = findSecondLargest(arr,arr.length);
 //        removeDuplicates(arr,arr.length);
-        for(int i=0;i<slargest.length;i++){
-            System.out.print(slargest[i]+" ");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
         }
+
+
     }
 }
