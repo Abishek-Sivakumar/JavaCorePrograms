@@ -42,9 +42,23 @@ public class ArrayProblems {
         arr[n-1]=temp;
     }
 
+    public static void leftRotateByBrute(int[] arr,int n,int d){ //This is the Brute force approach
+        // d represents the number of rotations
+        int[] temp = new int[d]; //Lets say d =3
+        for(int i=0;i<d;i++){ // First we store the d-1 ie 3 elements in temp array
+            temp[i]=arr[i];
+        }
+        for(int i=d;i<n;i++){ //Next we move the elements from 3rd to nth index to the first 3 index
+            arr[i-d]=arr[i]; // Here d represents 3 and i-d represents the 3-3=0 ,4-3=1, 5-3=2 and place the elements there
+        }
+        for(int i=n-d;i<n;i++){ //Here the starting is n-d since we will now have {4,5,6,7,     5,6,7,} we must replace these 5,6,7 with temp arr elements
+            arr[i]=temp[i-(n-d)]; //here i = 7-3 =4 indicates we start from the 4rth index
+        }                         // Also i-(n-d) = 4-(7-3) = 0th index of temp arr and so on 5-(7-3) = 1
+    }
+
     public static void main(String[] args) {
-        int[] arr = {1,1,1,2,2,3};
-        leftRotateByOne(arr,arr.length);
+        int[] arr = {1,2,3,4,5,6,7};
+        leftRotateByBrute(arr,arr.length,2);
 //        int[] slargest = findSecondLargest(arr,arr.length);
 //        removeDuplicates(arr,arr.length);
         for(int i=0;i<arr.length;i++){
