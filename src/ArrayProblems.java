@@ -16,7 +16,7 @@ public class ArrayProblems {
         for(int k=0;k<i+1;k++){
             System.out.print(arr[k]+" ");
         }
-        System.out.println("\nThe number of elements in sorted array is "+(i+1));
+        System.out.println("\nThe number of elements in final array is "+(i+1));
     }
 
     public static int[] findSecondLargest(int[] arr,int n){
@@ -56,14 +56,33 @@ public class ArrayProblems {
         }                         // Also i-(n-d) = 4-(7-3) = 0th index of temp arr and so on 5-(7-3) = 1
     }
 
-    public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6,7};
-        leftRotateByBrute(arr,arr.length,2);
-//        int[] slargest = findSecondLargest(arr,arr.length);
-//        removeDuplicates(arr,arr.length);
-        for(int i=0;i<arr.length;i++){
-            System.out.print(arr[i]+" ");
+    public static void reverseArray(int[] arr,int start,int end){
+        while(start<=end){
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
         }
+    }
+
+    public static void leftRotateByReverseMethod(int[] arr,int n,int d){
+        //int[] arr = {1,2,3,4,5,6,7}; For this array
+        //This is the Optimal solution aka the reverse method to rotating an array  .
+        // The time complexity is O(d) + O(n-d) + O(n) = O(2N) and the space complexity is O(1) since no new temp array is used like in Brute Force
+        reverseArray(arr,0,d-1); // Reverse the array {2,1, 3,4,5,6,7,}
+        reverseArray(arr,d,n-1); //Reverse after d {2,1,7,6,5,4,3}
+        reverseArray(arr,0,n-1); //Now reverse the whole array for answer {3 4 5 6 7 1 2}
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,5,7,1,4,5,6,7};
+//        leftRotateByReverseMethod(arr,arr.length,2);
+//        int[] slargest = findSecondLargest(arr,arr.length);
+        removeDuplicates(arr,arr.length);
+//        for(int i=0;i<arr.length;i++){
+//            System.out.print(arr[i]+" ");
+//        }
 
 
     }
