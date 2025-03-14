@@ -70,19 +70,42 @@ public class ArrayProblems {
         //int[] arr = {1,2,3,4,5,6,7}; For this array
         //This is the Optimal solution aka the reverse method to rotating an array  .
         // The time complexity is O(d) + O(n-d) + O(n) = O(2N) and the space complexity is O(1) since no new temp array is used like in Brute Force
-        reverseArray(arr,0,d-1); // Reverse the array {2,1, 3,4,5,6,7,}
+        //FOR RIGHT ROTATION SUBTRACT THE D FORM N TO GET THE NEW D which is m
+        //int D = d%n;
+        //int m = nums.length - D;
+        reverseArray(arr,0,d-1); // Reverse the array {2,1, 3,4,5,6,7,} ...Use m for right rotation
         reverseArray(arr,d,n-1); //Reverse after d {2,1,7,6,5,4,3}
         reverseArray(arr,0,n-1); //Now reverse the whole array for answer {3 4 5 6 7 1 2}
     }
 
+    public static void moveZerosToEnd(int[] arr,int n){
+        int j=-1;
+        for(int i=0;i<n;i++){ //To find the first occurrence of zero in the given array
+            if(arr[i]==0){
+                j=i;
+                break;
+            }
+        }
+
+        if(j==-1){
+//            return arr since there are no zeros in the given array .Without this the test case fails in codeninja;
+        }
+
+        for(int i=j+1;i<n;i++){
+            if(arr[i]!=0){
+                arr[j]=arr[i];
+                arr[i]=0;
+                j++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        int[] arr = {1,2,3,5,7,1,4,5,6,7};
-//        leftRotateByReverseMethod(arr,arr.length,2);
-//        int[] slargest = findSecondLargest(arr,arr.length);
-        removeDuplicates(arr,arr.length);
-//        for(int i=0;i<arr.length;i++){
-//            System.out.print(arr[i]+" ");
-//        }
+        int[] arr = {1,0,2,3,0,0,0,4,5,6,7};
+        moveZerosToEnd(arr,arr.length);
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
 
 
     }
