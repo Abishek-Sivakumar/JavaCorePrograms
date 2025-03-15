@@ -78,7 +78,7 @@ public class ArrayProblems {
         reverseArray(arr,0,n-1); //Now reverse the whole array for answer {3 4 5 6 7 1 2}
     }
 
-    public static void moveZerosToEnd(int[] arr,int n){
+    public static int[] moveZerosToEnd(int[] arr,int n){
         int j=-1;
         for(int i=0;i<n;i++){ //To find the first occurrence of zero in the given array
             if(arr[i]==0){
@@ -88,6 +88,7 @@ public class ArrayProblems {
         }
 
         if(j==-1){
+            return arr;
 //            return arr since there are no zeros in the given array .Without this the test case fails in codeninja;
         }
 
@@ -98,11 +99,28 @@ public class ArrayProblems {
                 j++;
             }
         }
+        return arr;
+    }
+
+    public static void linearSearch(int[] arr,int n,int k){
+        int pos=-1;
+        for(int i=0;i<n;i++){
+            if(arr[i]==k){
+                pos=i+1;
+                break;
+            }
+        }
+        if(pos==-1){
+            System.out.println("Element not found");
+        }else{
+            System.out.println("Element found at position "+pos);
+        }
     }
 
     public static void main(String[] args) {
         int[] arr = {1,0,2,3,0,0,0,4,5,6,7};
-        moveZerosToEnd(arr,arr.length);
+        linearSearch(arr,arr.length,4);
+        int[] res = moveZerosToEnd(arr,arr.length);
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
