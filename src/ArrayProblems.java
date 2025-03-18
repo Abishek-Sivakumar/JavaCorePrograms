@@ -160,11 +160,31 @@ public class ArrayProblems {
         return finalResult;
     }
 
+    public static List<Integer> intersectionOfSorted(int[] arr1,int[] arr2 ){
+        //The problem is this will return 4,4 as two distinct pairs rather than the same element
+        List<Integer> ans = new ArrayList<>();
+      int n1= arr1.length;
+      int n2= arr2.length;
+      int i=0,j=0;
+      while(i<n1 && j<n2){
+          if(arr1[i]<arr2[j]){
+              i++;
+          }else if(arr2[j]<arr1[i]){
+              j++;
+          }else{
+              ans.add(arr1[i]);
+              i++;
+              j++;
+          }
+      }
+      return ans;
+    }
+
     public static void main(String[] args) {
-        int[] arr1 = {1,2,4,5,6};
-        int[] arr2 = {2,4,5,7,8};
+        int[] arr1 = {1,2,4,4,5,6};
+        int[] arr2 = {2,4,4,5,7,8};
 //        linearSearch(arr,arr.length,4);
-        List<Integer> res = unionOfSorted(arr1,arr2);
+        List<Integer> res = intersectionOfSorted(arr1,arr2);
 //        for(int i=0;i<arr2.length;i++){
 //            System.out.print(arr2[i]+" ");
 //        }
