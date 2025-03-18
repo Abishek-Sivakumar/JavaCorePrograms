@@ -162,6 +162,7 @@ public class ArrayProblems {
 
     public static List<Integer> intersectionOfSorted(int[] arr1,int[] arr2 ){
         //The problem is this will return 4,4 as two distinct pairs rather than the same element
+        //It will return all the distinct pairs instead of the distinct individual elements
         List<Integer> ans = new ArrayList<>();
       int n1= arr1.length;
       int n2= arr2.length;
