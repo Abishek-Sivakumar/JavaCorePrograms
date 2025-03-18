@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ArrayProblems {
     //Easy Problems
@@ -74,7 +77,7 @@ public class ArrayProblems {
         //int D = d%n;
         //int m = nums.length - D;
         reverseArray(arr,0,d-1); // Reverse the array {2,1, 3,4,5,6,7,} ...Use m for right rotation
-        reverseArray(arr,d,n-1); //Reverse after d {2,1,7,6,5,4,3}
+        reverseArray(arr, d,n-1); //Reverse after d {2,1,7,6,5,4,3}
         reverseArray(arr,0,n-1); //Now reverse the whole array for answer {3 4 5 6 7 1 2}
     }
 
@@ -117,14 +120,55 @@ public class ArrayProblems {
         }
     }
 
-    public static void main(String[] args) {
-        int[] arr = {1,0,2,3,0,0,0,4,5,6,7};
-        linearSearch(arr,arr.length,4);
-        int[] res = moveZerosToEnd(arr,arr.length);
-        for(int i=0;i<arr.length;i++){
-            System.out.print(arr[i]+" ");
+    public static List<Integer> unionOfSorted(int[] arr1, int[] arr2){
+        LinkedList<Integer> res = new LinkedList<Integer>();
+
+        int n1= arr1.length;
+        int n2= arr2.length;
+        int i=0;
+        int j=0;
+        while(i<n1 && j<n2){
+            if(arr1[i]<=arr2[j]){
+                if(res.size()==0 || res.peekLast()!=arr1[i]){
+                    res.add(arr1[i]);
+                }
+                i++;
+            }else{
+                if(res.isEmpty() || res.peekLast()!=arr2[j]){
+                    res.add(arr2[j]);
+                }
+                j++;
+            }
         }
 
+        while(i<n1){
+            if(res.isEmpty() || res.peekLast()!=arr1[i]){
+                res.add(arr1[i]);
+            }
+            i++;
+        }
+
+        while(j<n2){
+            if(res.size()==0 || res.peekLast()!=arr2[j]){
+                res.add(arr2[j]);
+            }
+            j++;
+        }
+
+        List<Integer> finalResult = new ArrayList<>(res);
+
+        return finalResult;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1,2,4,5,6};
+        int[] arr2 = {2,4,5,7,8};
+//        linearSearch(arr,arr.length,4);
+        List<Integer> res = unionOfSorted(arr1,arr2);
+//        for(int i=0;i<arr2.length;i++){
+//            System.out.print(arr2[i]+" ");
+//        }
+        System.out.println(res);
 
     }
 }
