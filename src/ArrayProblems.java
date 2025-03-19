@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ArrayProblems {
-    //Easy Problems
+    //Easy Problems {2,4,4,5,7,8};
     public static void removeDuplicates(int[] arr ,int n){
         int i=0;
         for(int j=1;j<n;j++){
@@ -95,7 +95,7 @@ public class ArrayProblems {
 //            return arr since there are no zeros in the given array .Without this the test case fails in codeninja;
         }
 
-        for(int i=j+1;i<n;i++){
+        for(int i=j+1;i<n;i++){ //{1,2,4,4,0,0,0,5,0,6}
             if(arr[i]!=0){
                 arr[j]=arr[i];
                 arr[i]=0;
@@ -121,6 +121,8 @@ public class ArrayProblems {
     }
 
     public static List<Integer> unionOfSorted(int[] arr1, int[] arr2){
+        //int[] arr1 = {1,2,4,4,5,6};
+        //int[] arr2 = {2,4,5,5,7,8};
         LinkedList<Integer> res = new LinkedList<Integer>();
 
         int n1= arr1.length;
@@ -172,7 +174,7 @@ public class ArrayProblems {
               i++;
           }else if(arr2[j]<arr1[i]){
               j++;
-          }else{
+          }else{ //ie both the arr1[i] and arr2[j] are equal
               ans.add(arr1[i]);
               i++;
               j++;
@@ -181,15 +183,139 @@ public class ArrayProblems {
       return ans;
     }
 
+
+
     public static void main(String[] args) {
-        int[] arr1 = {1,2,4,4,5,6};
-        int[] arr2 = {2,4,4,5,7,8};
+        int[] arr1 = {1,2,4,5,6,7};
+        int[] arr2 = {2,4,5,5,7,8};
+        for(int i=0;i<arr2.length;i++){
+            System.out.print(arr2[i]+" ");
+        }
+//        removeDuplicates(arr2,arr2.length);
 //        linearSearch(arr,arr.length,4);
-        List<Integer> res = intersectionOfSorted(arr1,arr2);
+//        List<Integer> res = intersectionOfSorted(arr1,arr2);
 //        for(int i=0;i<arr2.length;i++){
 //            System.out.print(arr2[i]+" ");
 //        }
-        System.out.println(res);
+//        System.out.println(res);
 
     }
 }
+
+//public static List<Integer> findUnion2(int[] arr1 ,int[] arr2){
+//    LinkedList<Integer> res = new LinkedList<>();
+//    int n1= arr1.length;
+//    int n2= arr2.length;
+//    int i=0;
+//    int j=0;
+//    while(i<n1 && j<n2){
+//        if(arr1[i]<=arr2[j]){
+//            if(res.isEmpty() || res.peekLast()!=arr1[i]){
+//                res.add(arr1[i]);
+//            }
+//            i++;
+//        }else {
+//            if (res.isEmpty() || res.peekLast() != arr2[j]) {
+//                res.add(arr2[j]);
+//                j++;
+//            }
+//            j++;
+//        }
+//    }
+//    while(i<n1){
+//        if(res.isEmpty() || res.peekLast()!=arr1[i]){
+//            res.add(arr1[i]);
+//            i++;
+//        }
+//    }
+//    while(j<n2){
+//        if(res.isEmpty() || res.peekLast()!=arr2[j]){
+//            res.add(arr2[j]);
+//            j++;
+//        }
+//    }
+//    List<Integer> ans = new ArrayList<>(res);
+//    return ans;
+//}
+//
+//public static List<Integer> findIntersection2(int[] arr1,int[] arr2){
+//    List<Integer> res = new ArrayList<>();
+//    int n1= arr1.length;
+//    int n2 =arr2.length;
+//    int i=0,j=0;
+//    while(i<n1 && j<n2){
+//        if(arr1[i]<arr2[j]){
+//            i++;
+//        }else if(arr2[j]<arr1[i]) {
+//            j++;
+//        }else{
+//            res.add(arr1[i]);
+//            i++;
+//            j++;
+//        }
+//    }
+//    return res;
+//}
+//
+//public static int[] findSecondLargest2(int[] arr){
+//    int largest=arr[0],n=arr.length,slargest=Integer.MIN_VALUE;
+//    for(int i=1;i<n;i++){
+//        if(arr[i]>largest){
+//            slargest=largest;
+//            largest=arr[i];
+//        }else if(arr[i]<largest && arr[i]>slargest){
+//            slargest=arr[i];
+//        }
+//    }
+//    return new int[]{largest,slargest};
+//}
+//
+//public static void reverse2(int[] arr,int start,int end){
+//    while(start<end){
+//        int temp = arr[start];
+//        arr[start] = arr[end];
+//        arr[end]=temp;
+//        start++;
+//        end--;
+//    }
+//}
+//
+//public static void leftRotate2(int[] arr,int d){
+//    reverse2(arr,0,d-1);
+//    reverse2(arr,d,arr.length-1);
+//    reverse2(arr,0, arr.length-1);
+//}
+//
+//public static int[] moveZerosToEnd2(int[] arr){
+//    int n=arr.length;
+//    int j=-1;
+//    for(int i=0;i<n;i++){
+//        if(arr[i]==0){
+//            j=i;
+//            break;
+//        }
+//    }
+//    if(j==-1){
+//        return arr;
+//    }
+//    //{2,4,5,0,0,0,5,7,8}
+//    for(int i=j+1;i<n;i++){
+//        if(arr[i]!=0){
+//            arr[j]=arr[i];
+//            arr[i]=0;
+//            j++;
+//        }
+//    }
+//    return arr;
+//}
+//
+//public static void removeDuplicates2(int[] arr){
+//    int n= arr.length;
+//    int i=0;
+//    for(int j=1;j<n;j++) {
+//        if (arr[j] != arr[i]) {
+//            arr[i + 1] = arr[j];
+//            i++;
+//        }
+//    }
+//}
