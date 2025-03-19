@@ -183,14 +183,67 @@ public class ArrayProblems {
       return ans;
     }
 
+    public static boolean isSorted(int[] arr){
+        boolean sorted = true;
+        for(int i=1;i<arr.length;i++){
+            if(arr[i-1]>arr[i]){
+                sorted=false;
+                break;
+            }
+        }
+        return sorted;
+    }
+
+    public static void reverseArray2(int[] arr,int start,int end){
+        while(start<=end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public static boolean rotateArray(int[] arr,int d){
+        int n=arr.length;
+        reverseArray(arr,0,d-1);
+        reverseArray(arr,d,n-1);
+        reverseArray(arr,0,n-1);
+        boolean res = isSorted(arr);
+        return res;
+    }
+
+    public boolean check(int[] nums) {
+        boolean ans = false;
+        int n=nums.length;
+        for(int i=0;i<n;i++){
+            ans = rotateArray(nums,1);
+            if(ans==true){
+                break;
+            }
+        }
+        return ans;
+    }
+
 
 
     public static void main(String[] args) {
         int[] arr1 = {1,2,4,5,6,7};
         int[] arr2 = {2,4,5,5,7,8};
-        for(int i=0;i<arr2.length;i++){
-            System.out.print(arr2[i]+" ");
+        int[] nums = {3,4,5,1,2};
+        boolean ans = false;
+        int n=nums.length;
+        for(int i=0;i<n;i++){
+            ans = rotateArray(nums,i);
+            for(int k=0;k<n;k++){
+                System.out.print(nums[k]+" ");
+            }
+            System.out.println();
+            if(ans==true){
+                break;
+            }
         }
+        System.out.println(ans);
 //        removeDuplicates(arr2,arr2.length);
 //        linearSearch(arr,arr.length,4);
 //        List<Integer> res = intersectionOfSorted(arr1,arr2);
