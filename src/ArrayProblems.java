@@ -183,67 +183,43 @@ public class ArrayProblems {
       return ans;
     }
 
-    public static boolean isSorted(int[] arr){
-        boolean sorted = true;
-        for(int i=1;i<arr.length;i++){
-            if(arr[i-1]>arr[i]){
-                sorted=false;
-                break;
-            }
-        }
-        return sorted;
-    }
+    public static void findMissingNumber(int[] arr){
+        //{1,2,4}
+        //METHOD 1
+//        int n = arr.length;
+//        int sum = ((n+1)*(n+2))/2; //This will be equal to 10
+//        System.out.println(sum);
+//        int s2 = 0;
+//        for(int i=0;i<n;i++){
+//            s2+=arr[i];
+//        } //Now s2 will be 7 The  10-7 gives 3 which is the missing number
+//        System.out.println("The missing number is "+ (sum-s2));
+//        This method may not be optimal since the array size can be 10 power 5 which will result in not storing the sum in int
 
-    public static void reverseArray2(int[] arr,int start,int end){
-        while(start<=end){
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
-        }
-    }
-
-    public static boolean rotateArray(int[] arr,int d){
+        //METHOD 2
         int n=arr.length;
-        reverseArray(arr,0,d-1);
-        reverseArray(arr,d,n-1);
-        reverseArray(arr,0,n-1);
-        boolean res = isSorted(arr);
-        return res;
-    }
-
-    public boolean check(int[] nums) {
-        boolean ans = false;
-        int n=nums.length;
+        int xor1 = 0;
+        int xor2 = 0;
         for(int i=0;i<n;i++){
-            ans = rotateArray(nums,1);
-            if(ans==true){
-                break;
-            }
+            xor1 = xor1 ^ (i+1);
+            xor2 = xor2 ^ arr[i];
         }
-        return ans;
+        xor1 = xor1 ^ (n+1); //THIS IS VERY IMPORTANT SINCE WE MUST INCLUDE THE LAST NUMBER ALSO FOR XOR
+        System.out.println("The missing number is "+ (xor1 ^ xor2));
     }
 
-
+    public static void onceNotTwice(int[] arr){
+        int n=arr.length;
+        int xor = 0;
+        for(int i=0;i<n;i++){
+            xor = xor ^ arr[i];
+        }
+        System.out.println("The element that appears once is "+xor);
+    }
 
     public static void main(String[] args) {
-        int[] arr1 = {1,2,4,5,6,7};
-        int[] arr2 = {2,4,5,5,7,8};
-        int[] nums = {3,4,5,1,2};
-        boolean ans = false;
-        int n=nums.length;
-        for(int i=0;i<n;i++){
-            ans = rotateArray(nums,i);
-            for(int k=0;k<n;k++){
-                System.out.print(nums[k]+" ");
-            }
-            System.out.println();
-            if(ans==true){
-                break;
-            }
-        }
-        System.out.println(ans);
+        int[] arr1 = {2,3,3,4,4,5,5};
+        onceNotTwice(arr1);
 //        removeDuplicates(arr2,arr2.length);
 //        linearSearch(arr,arr.length,4);
 //        List<Integer> res = intersectionOfSorted(arr1,arr2);
