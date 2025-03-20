@@ -197,12 +197,13 @@ public class ArrayProblems {
 //        This method may not be optimal since the array size can be 10 power 5 which will result in not storing the sum in int
 
         //METHOD 2
+        //{1,2,4}
         int n=arr.length;
         int xor1 = 0;
         int xor2 = 0;
         for(int i=0;i<n;i++){
-            xor1 = xor1 ^ (i+1);
-            xor2 = xor2 ^ arr[i];
+            xor1 = xor1 ^ (i+1); //This will store the xor values upto 1,2,3 .We must add the xor 4 after loop
+            xor2 = xor2 ^ arr[i]; //THis will store the xor values of 1,2,4
         }
         xor1 = xor1 ^ (n+1); //THIS IS VERY IMPORTANT SINCE WE MUST INCLUDE THE LAST NUMBER ALSO FOR XOR
         System.out.println("The missing number is "+ (xor1 ^ xor2));
