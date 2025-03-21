@@ -218,9 +218,42 @@ public class ArrayProblems {
         System.out.println("The element that appears once is "+xor);
     }
 
+    public static void longestSubarrayWithSumK(int[] arr,int k){
+        //VERY IMPORTANT
+        //This method only works if there are positive or zeros in the array
+        //It will not work if the array contains negative numbers
+        int n= arr.length;
+        int left = 0;
+        int right = 0;
+        long sum=arr[0]; //Since the sum can be very large
+        int maxLen = 0;
+        while(right<n){
+            while(left<=right && sum>k){
+                //If the sum exceeds the value k,
+                // Then subtract one element ie the left element to make it less than or equal to k
+                //Repeat the looping until it becomes less tha or equal to k
+                sum-=arr[left];
+                left++;
+            }
+            // If the sum == k , then assign the max of maxLen and i-j+1 to maxLen
+            if(sum==k){
+                maxLen = Math.max(maxLen,right-left+1);
+            }
+
+            //This step is crucial
+            //The right element will be added to sum
+            //Before adding we must check whether right++ indicates out of bounds or not ie one position after the last index
+            right++;
+            if(right<n){
+                sum+=arr[right];
+            }
+        }
+        System.out.println("The Maximum subarray is "+maxLen);
+    }
+
     public static void main(String[] args) {
-        int[] arr1 = {2,3,3,4,4,5,5};
-        onceNotTwice(arr1);
+        int[] arr = {1,2,3,1,1,1,1};
+        longestSubarrayWithSumK(arr,3);
 //        removeDuplicates(arr2,arr2.length);
 //        linearSearch(arr,arr.length,4);
 //        List<Integer> res = intersectionOfSorted(arr1,arr2);
