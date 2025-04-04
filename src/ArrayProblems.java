@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ArrayProblems {
     //Easy Problems {2,4,4,5,7,8};
@@ -251,15 +248,51 @@ public class ArrayProblems {
         System.out.println("The Maximum subarray is "+maxLen);
     }
 
+    public static void longestSubArraySumKNegative(int[] arr,int k){
+        //{3, 4, -7, 1, 3, 3, 1, -4}    k=7    ans=3
+        int sum=0;
+        int count=0;
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            if(sum==k){
+                count++;
+            }
+            if(hm.containsKey(sum-k)){
+                count+=hm.get(sum-k);
+            }
+            Integer prev = hm.get(sum);
+            if(prev==null){
+                hm.put(sum,1);
+            }else{
+                hm.put(sum,prev+1);
+            }
+        }
+        System.out.println("The Longest Subarray with sum K is "+count);
+    }
+
+    public static int[] twoSum(int[] arr,int k){
+        Map<Integer,Integer> hm = new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            int num = arr[i];
+            int target = k-num;
+            if(hm.containsKey(target)){
+                return new int[]{hm.get(target),i};
+            }
+            hm.put(num,i);
+        }
+        return new int[]{-1,-1};
+    }
+
     public static void main(String[] args) {
-        int[] arr = {1,2,3,1,1,1,1};
-        longestSubarrayWithSumK(arr,3);
+        int[] arr = {3, 6, 7, 1, 4};
+        int[] ans = twoSum(arr,10);
 //        removeDuplicates(arr2,arr2.length);
 //        linearSearch(arr,arr.length,4);
 //        List<Integer> res = intersectionOfSorted(arr1,arr2);
-//        for(int i=0;i<arr2.length;i++){
-//            System.out.print(arr2[i]+" ");
-//        }
+        for(int i=0;i<ans.length;i++){
+            System.out.print(ans[i]+" ");
+        }
 //        System.out.println(res);
 
     }
