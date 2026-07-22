@@ -114,6 +114,34 @@
 //        return dummy.next;
 //    }
 //
+//    public static Node addLinkedList(Node head1, Node head2){
+//        Node dNode = new Node(-1);
+//        Node temp = dNode;
+//        Node temp1 = head1;
+//        Node temp2 = head2;
+//        int carry = 0;
+//        int sum = 0;
+//        while(temp1!=null || temp2!=null || carry!=0){
+//            sum = 0;
+//            if(temp1!=null){
+//                sum+=temp1.data;
+//                temp1 = temp1.next;
+//            }
+//            if(temp2!=null){
+//                sum+=temp2.data;
+//                temp2 = temp2.next;
+//            }
+//            sum+=carry;
+//            carry = sum/10;
+//            Node newNode = new Node(sum%10);
+//            temp.next = newNode;
+//            temp = temp.next;
+//        }
+//        return dNode.next;
+//    }
+//    LENGTH OF LOOP
+//    ROTATE A LIST
+//    ADD A LINKED LIST
 //    public static Node sortList(Node head){
 //        // DON'T FORTGET THE HEAD.NEXT
 //        if(head==null || head.next==null){
@@ -127,6 +155,62 @@
 //        right = sortList(right);
 //        return mergeLinkedList(left, right);
 //    }
+//  public static Node addLists(Node head1, Node head2){
+//        Node dNode = new Node(-1);
+//      Node temp = dNode;
+//      Node temp1 = head1;
+//      Node temp2 = head2;
+//      int carry = 0;
+//      while(temp1!=null || temp2!=null || carry!=0){
+//            int sum = carry;
+//          if(temp1!=null){
+//                sum+=temp1.data;
+//                temp1 = temp1.next;
+//          }
+//          if(temp2!=null){
+//                sum+=temp2.data;
+//                temp2 = temp2.next;
+//          }
+//          carry = sum / 10;
+//          Node tempNode = new Node(sum%10);
+//          temp.next = tempNode;
+//          temp = temp.next;
+//      }
+//      return dNode.next;
+//  }
+//
+//  public static int getNumberOfNodeAndCycle(Node head){
+//        Node temp = head;
+//        int count = 1;
+//        while(temp.next!=null){
+//          count++;
+//          temp = temp.next;
+//      }
+//      temp.next = head;
+//     // System.out.println("The number of nodes : " + count);
+//      return count;
+//  }
+//
+//  public static Node disconnectAndGetNewHead(Node head, int n){
+//        // The n = n - k
+//      int count = 1;
+//      Node temp = head;
+//      while(count!=n){
+//            count++;
+//            temp = temp.next;
+//      }
+//      Node newHead = temp.next;
+//      temp.next = null;
+//      // System.out.println("The temp is at :" + temp.data);
+//      return newHead;
+//  }
+//
+//  public static Node rotateList(Node head, int k){
+//        int n = getNumberOfNodeAndCycle(head);
+//        k = k % n;
+//        Node newHead = disconnectAndGetNewHead(head, n - k);
+//      return newHead;
+//  }
 //
 //    public static void main(String[] args) {
 //        Scanner sc = new Scanner(System.in);
