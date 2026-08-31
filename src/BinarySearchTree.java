@@ -13,14 +13,14 @@ class Node{
 
 public class BinarySearchTree {
 
-    public static Node insertBSTNode(Node root, int val){
+    public static Node insertNode(Node root, int val){
         if(root==null){
             return new Node(val);
         }
         if(root.data > val){
-            root.left = insertBSTNode(root.left, val);
+            root.left = insertNode(root.left, val);
         }else if(root.data < val){
-            root.right = insertBSTNode(root.right, val);
+            root.right = insertNode(root.right, val);
         }
         return root;
     }
@@ -106,7 +106,7 @@ public class BinarySearchTree {
 //        root = insertNode(root, 14);
         for(int i=0;i<n;i++){
             int val = sc.nextInt();
-            root = insertBSTNode(root, val);
+            root = insertNode(root, val);
         }
         inOrderTraversal(root);
     }

@@ -72,9 +72,37 @@ public class DSAProblems {
         System.out.println("Length is : " + maxLength);
     }
 
+    public static void findLongestSubstringWithDistinctCharacter(String s){
+        int n = s.length();
+        int len = 0;
+        int maxLen = 0;
+        int l = 0, r = 0;
+        int hash[] = new int[256];
+        Arrays.fill(hash, -1);
+        int startIndex = 0;
+        while(r<n){
+            char c = s.charAt(r);
+            if(hash[c]!=-1 && hash[c]>=l){
+                l = hash[c]+1;
+            }
+            len = r-l+1;
+//            maxLen = Math.max(len, maxLen);
+            if(len > maxLen){
+                maxLen = len;
+                startIndex = l;
+            }
+            hash[c] = r;
+            r++;
+        }
+        String ans = s.substring(startIndex, startIndex+maxLen);
+        System.out.println("The substring with distinct characters is " + ans);
+        System.out.println("The length of substring with distinct characters is : " + maxLen);
+    }
+
     public static void main(String args[]){
-        System.out.println(findLongestCommonSubsequence("abcd", "afgbjhc"));
-        System.out.println(printLongestCommonSubsequence("abcd", "afgbjhc"));
-        findLongestCommonSubstring("abcdef", "jbcdkl");
+//        System.out.println(findLongestCommonSubsequence("abcd", "afgbjhc"));
+//        System.out.println(printLongestCommonSubsequence("abcd", "afgbjhc"));
+//        findLongestCommonSubstring("abcdef", "jbcdkl");
+        findLongestSubstringWithDistinctCharacter("abcabcbb");
     }
 }
