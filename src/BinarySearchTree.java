@@ -86,6 +86,56 @@ public class BinarySearchTree {
 //        }
 //    }
 
+    public static int countLeafNodes(Node root){
+        if(root==null){
+            return 0;
+        }
+        if(root.left==null && root.right==null){
+            return 1;
+        }
+        return countLeafNodes(root.left) + countLeafNodes(root.right);
+    }
+
+    //THIS IS FOR ONLY BINARY TREES, AND DOES NOT WORK FOR BST
+    //                      1
+//                         /  \
+//                        2    2
+//                       / \   / \
+//                      3  4   4  3
+//                      VERY IMPORTANT NOTICE THE root.left.left and root.right.right are equals
+//                      and                       root.left.right and root.right.left are equal
+//                                          THis differentiates from the isIdentical problem
+//    public static boolean isSymmetric(Node root){
+//        if(root==null){
+//            return false;
+//        }
+//        return isMirror(root.left, root.right);
+//    }
+//
+//    public static boolean isMirror(Node left, Node right) {
+//        if (left == null && right == null) {
+//            return true;
+//        }
+//        if (left == null || right == null) {
+//            return false;
+//        }
+//        return isMirror(left.left, right.right) && isMirror(left.right, right.left);
+//    }
+
+    // VERY IMPORTANT : IT IS ALMOST SIMILAR TO FINDING SYMMENTRIC FUNCTION WITH EXCEPTION OF PASSING THE ROOTS
+    public static boolean isIdentical(Node root1, Node root2){
+        if(root1==null && root2==null){
+            return true;
+        }
+        if(root1==null || root2==null){
+            return false;
+        }
+        if(root1.data != root2.data){
+            return false;
+        }
+        return isIdentical(root1.left, root2.left) && isIdentical(root1.right, root2.right);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
