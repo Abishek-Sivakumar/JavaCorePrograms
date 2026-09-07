@@ -122,7 +122,7 @@ public class BinarySearchTree {
 //        return isMirror(left.left, right.right) && isMirror(left.right, right.left);
 //    }
 
-    // VERY IMPORTANT : IT IS ALMOST SIMILAR TO FINDING SYMMENTRIC FUNCTION WITH EXCEPTION OF PASSING THE ROOTS
+    // VERY IMPORTANT : IT IS ALMOST SIMILAR TO FINDING SYMMETRIC FUNCTION WITH EXCEPTION OF PASSING THE ROOTS
     public static boolean isIdentical(Node root1, Node root2){
         if(root1==null && root2==null){
             return true;
