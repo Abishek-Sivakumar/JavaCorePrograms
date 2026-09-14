@@ -145,6 +145,38 @@ public class DSAProblems {
         return dp[n];
     }
 
+    // Finding the Longest Substring with K DISTINCT Characters
+    // This one is similar to the Normal Longest Substring with distinct characters
+    public static void findLongestSubstringWithKDistinct(String s, int k){
+        // Example Input : aabbc, aaabbcc, eceba
+        int n = s.length();
+        int len = 0;
+        int maxLen = 0;
+        int l = 0, r = 0;
+        int startIndex = 0;
+        Map<Character, Integer> hash = new HashMap<>();
+        while(r<n){
+            char c = s.charAt(r);
+            hash.put(c, hash.getOrDefault(c, 0) + 1);
+            while(hash.size()>k){
+                char leftChar = s.charAt(l);
+                hash.put(leftChar, hash.get(leftChar)-1);
+                if(hash.get(leftChar)==0){
+                    hash.remove(leftChar);
+                }
+                l++;
+            }
+            len = r-l+1;
+            if(len > maxLen){
+                maxLen = len;
+                startIndex = l;
+            }
+            r++;
+        }
+        String ans = s.substring(startIndex, maxLen + startIndex);
+        System.out.println(ans + " " + maxLen);
+    }
+
     public static void main(String args[]){
 //        System.out.println(findLongestCommonSubsequence("abcd", "afgbjhc"));
 //        System.out.println(printLongestCommonSubsequence("abcd", "afgbjhc"));
