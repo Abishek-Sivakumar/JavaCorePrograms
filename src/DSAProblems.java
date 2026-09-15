@@ -177,6 +177,40 @@ public class DSAProblems {
         System.out.println(ans + " " + maxLen);
     }
 
+    // This is the standard 3 sum problem to find triplets with sum 0, just substitute the 0 for any k value sum triplets
+    public static void findTriplets(int nums[]){
+        // {-2, -1, 0, 0, 1, 2 }
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        int n = nums.length;
+        for(int i=0;i<n;i++){
+            if(i>0 && nums[i]==nums[i-1]){
+                continue;
+            }
+            int left = i+1;
+            int right = n-1;
+            while(left < right){
+                int sum = nums[i] + nums[left] + nums[right];
+                if(sum==0){
+                    ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    left++;
+                    right++;
+                    while(left < right && nums[left]==nums[left-1]){
+                        left++;
+                    }
+                    while(left < right && nums[right]==nums[right+1]){
+                        right--;
+                    }
+                }else if(sum > 0){
+                    right--;
+                }else{
+                    left--;
+                }
+            }
+        }
+        System.out.println(ans);
+    }
+
     public static void main(String args[]){
 //        System.out.println(findLongestCommonSubsequence("abcd", "afgbjhc"));
 //        System.out.println(printLongestCommonSubsequence("abcd", "afgbjhc"));
