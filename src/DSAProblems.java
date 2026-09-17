@@ -177,6 +177,33 @@ public class DSAProblems {
         System.out.println(ans + " " + maxLen);
     }
 
+    // This is the Leetcode 424, where you find the length of longest single character substring by replacing at most k characters
+    public static void findLongestSubstringWithKreplacements(String s, int k){
+        // ABAB k k= 1, k=2, ABCCBAAB, k = 2
+        int left = 0;
+        int right = 0;
+        int n = s.length();
+        int hash[] = new int[26];
+        int maxCount = 0;
+        int len = 0;
+        int maxLen = 0;
+        while(right < n){
+            char c = s.charAt(right);
+            len = right - left + 1;
+            hash[c-'A']++;
+            maxCount = Math.max(maxCount, hash[c-'A']);
+            if( (len - maxCount) > k){
+                hash[s.charAt(left)-'A']--;
+                left++;
+                // THIS IS VERY IMPORTANT OR YOU CAN SKIP USING len AND JUST TYPE right - left + 1 EVERYWHERE
+                len  = right - left + 1;
+            }
+            maxLen = Math.max(len, maxLen);
+            right++;
+        }
+        System.out.println("The length of longest substring with same characters after k replacements is " + maxLen);
+    }
+
     // This is the standard 3 sum problem to find triplets with sum 0, just substitute the 0 for any k value sum triplets
     public static void findTriplets(int nums[]){
         // {-2, -1, 0, 0, 1, 2 }
