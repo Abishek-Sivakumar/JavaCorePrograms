@@ -238,6 +238,32 @@ public class DSAProblems {
         System.out.println(ans);
     }
 
+    // We count the number of common SUBSEQUENCES between two strings using the same dp method
+    public static void findNumberOfCommonSubsequences(String s, String t){
+        int m = s.length();
+        int n = t.length();
+        int dp[][] = new int[m+1][n+1];
+
+        // THESE TWO LOOPS ARE VERY IMPORTANT TO PREPOPULATE THE DP ARRAY
+        for(int i=0;i<=m;i++){
+            dp[i][0] = 1;
+        }
+        for(int i=0;i<=n;i++){
+            dp[0][i] = 1;
+        }
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(s.charAt(i-1)==t.charAt(j-1)){
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1];
+                }else{
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1];
+                }
+            }
+        }
+        // If we do not want the "" as a common subsequence just minus the final value : dp[m][n]-1
+        System.out.println("The number of common subsequences is : " + dp[m][n]);
+    }
+
     public static void main(String args[]){
 //        System.out.println(findLongestCommonSubsequence("abcd", "afgbjhc"));
 //        System.out.println(printLongestCommonSubsequence("abcd", "afgbjhc"));
